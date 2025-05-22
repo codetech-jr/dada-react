@@ -1,0 +1,288 @@
+/* components/Chatbot/Chatbot.module.css */
+
+/* ... (Estilos para .chatHeader, .messageList, .message, .quickReplyButton, .chatInputContainer etc. se mantienen) ... */
+
+/* --- Estilos para el botón flotante de toggle --- */
+.chatToggleButton {
+  position: fixed;
+  bottom: 25px; /* O la distancia que prefieras */
+  right: 25px;  /* O la distancia que prefieras */
+  background-color: #4A3AFF; /* Color principal de tu marca */
+  color: white;
+  width: 60px;  /* Ajusta el tamaño según necesites */
+  height: 60px; /* Ajusta el tamaño según necesites */
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 1000; /* Muy importante para que esté encima de otros elementos */
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
+}
+
+.chatToggleButton:hover {
+  transform: scale(1.1);
+  /* background-color: #3a2ccc; */ /* Opcional: cambio de color al pasar el mouse */
+}
+
+/* Opcional: Si quieres un estilo diferente para el botón cuando el chat está abierto */
+
+
+/* --- Contenedor exterior para la ventana del chatbot --- */
+.chatbotOuterContainer {
+  position: fixed;
+  bottom: 95px; /* (altura del botón de toggle + margen deseado). Ej: 60px + 10px + 25px (bottom del toggle) = 95px desde abajo */
+  right: 25px;   /* Alineado con el botón de toggle */
+  z-index: 999;  /* Un poco menos que el botón de toggle para que el botón esté encima si se superponen al animar */
+  animation: slideUp 0.3s ease-out; /* Puedes mantener o quitar la animación */
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* El .chatbotContainer (la ventana del chat en sí) */
+.chatbotContainer {
+  width: 370px; /* O el ancho que tenías */
+  height: 600px; /* O el alto que tenías */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* ... (resto de tus estilos: .chatHeader, .messageList, etc.) ... */
+
+/* --- ChatHeader --- */
+.chatHeader {
+  background-color: #4A3AFF; /* Azul/morado oscuro del header */
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+}
+
+.headerAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.headerTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.headerSubtitle {
+  font-size: 12px;
+  opacity: 0.8;
+  margin: 2px 0 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px; /* Ajusta según sea necesario */
+}
+
+.headerActions button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+  opacity: 0.8;
+}
+.headerActions button:hover {
+  opacity: 1;
+}
+
+/* --- MessageList --- */
+.messageList {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.messageList::-webkit-scrollbar {
+  width: 6px;
+}
+.messageList::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.messageList::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 3px;
+}
+.messageList::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+.dateSeparator {
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  margin: 15px 0;
+}
+
+/* --- Message --- */
+.messageWrapper {
+  display: flex;
+  margin-bottom: 15px;
+  max-width: 85%;
+}
+
+.messageWrapper.user {
+  align-self: flex-end;
+  flex-direction: row-reverse; /* Para alinear el contenido a la derecha */
+}
+
+.messageWrapper.bot {
+  align-self: flex-start;
+}
+
+.botAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 10px;
+  align-self: flex-end; /* Alinear con la parte inferior del último mensaje del bot */
+}
+.messageWrapper.user .botAvatar { /* No mostrar avatar para el usuario */
+  display: none;
+}
+
+
+.messageBubble {
+  padding: 10px 15px;
+  border-radius: 18px;
+  font-size: 14.5px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.messageBubble.bot {
+  background-color: #f0f0f0;
+  color: #333;
+  border-bottom-left-radius: 5px;
+}
+/* Para mensajes subsecuentes del mismo sender, redondear menos */
+.messageWrapper.bot + .messageWrapper.bot .messageBubble {
+  border-top-left-radius: 5px;
+}
+
+
+.messageBubble.user {
+  background-color: #4A3AFF; /* Mismo color que el header */
+  color: white;
+  border-bottom-right-radius: 5px;
+  margin-left: auto; /* Empuja la burbuja a la derecha */
+}
+/* Para mensajes subsecuentes del mismo sender, redondear menos */
+.messageWrapper.user + .messageWrapper.user .messageBubble {
+  border-top-right-radius: 5px;
+}
+
+/* Contenedor para mensajes agrupados del bot */
+.botMessageGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Espacio entre burbujas del mismo bot */
+  align-items: flex-start;
+}
+.botMessageGroup .messageBubble {
+  max-width: 100%; /* Para que no se pase del contenedor */
+}
+
+
+/* --- QuickReply --- */
+.quickReplyContainer {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea */
+  gap: 8px;
+  margin-top: 8px; /* Espacio después del último mensaje del bot */
+  margin-left: 42px; /* Alinear con mensajes del bot (avatar + margen) */
+  margin-bottom: 10px;
+}
+
+.quickReplyButton {
+  background-color: #ffffff;
+  color: #4A3AFF;
+  border: 1px solid #4A3AFF;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.quickReplyButton:hover {
+  background-color: #E8E6FF; /* Un lila muy claro */
+}
+
+.quickReplyButton svg { /* Estilo para iconos dentro de los botones */
+  font-size: 16px;
+}
+
+
+/* --- ChatInput --- */
+.chatInputContainer {
+  display: flex;
+  padding: 15px 20px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+}
+
+.chatInputContainer input {
+  flex-grow: 1;
+  border: 1px solid #d0d0d0;
+  border-radius: 20px;
+  padding: 10px 18px;
+  font-size: 14px;
+  outline: none;
+}
+.chatInputContainer input:focus {
+  border-color: #4A3AFF;
+  box-shadow: 0 0 0 2px rgba(74, 58, 255, 0.2);
+}
+
+.sendButton { /* Si quieres un botón de enviar en lugar de solo Enter */
+  background: none; /* O #4A3AFF para un botón coloreado */
+  color: #4A3AFF;
+  border: none;
+  padding: 0 15px;
+  margin-left: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sendButton:hover {
+  color: #3528b3;
+}

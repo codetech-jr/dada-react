@@ -1,0 +1,498 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+    --main-color: #231e64;
+    --accent-color: #03d3b0;
+    --secondary-color: #ecb44b;
+    --enfasis-color: #7ed3a5;
+    --black-80: #1A1A1A;
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --black-90: hsl(0, 0%, 10%);
+    --black-70: hsl(0, 0%, 30%);
+    --white: hsl(0, 0%, 100%);
+    --white-alpha-40: hsla(0, 0%, 100%, 0.4);
+    --white-alpha-50: hsla(0, 0, 100%, 0.5);
+
+    --swiper-theme-color: #ecb44b; 
+    --swiper-navigation-color: #ecb44b; 
+    --swiper-pagination-bullet-inactive-color: #231e64;
+    --swiper-pagination-bullet-inactive-opacity: 0.5;
+    --swiper-pagination-color: #ecb44b;
+    --radius: 0.625rem;
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+body {
+  font-family: var(--font-text);
+  background-color: var(--main-color);
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: var(--font-primary);
+}
+
+@layer base {
+  .nav-item{
+    @apply px-4 py-1.5 rounded-full text-white/70 text-sm font-semibold hover:bg-[#03d3b0]/10 hover:text-white transition duration-300;
+  }
+.hero-ring {
+      @apply absolute inset-0 border-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-emerald-300/5 shadow-[0_0_80px_inset] shadow-emerald-300/5;
+  }
+}
+
+@layer utilities {
+  .container{
+    @apply lg:max-w-5xl
+  }
+}
+
+/* globals.css o tu archivo de estilos principal */
+
+/* Centrar el Swiper si es más angosto que su contenedor y darle un ancho máximo */
+.mySwiper {
+  width: 100%; /* Que intente ocupar el ancho disponible */
+  max-width: 1024px; /* Ajusta este valor según el diseño. Podría ser 900px, 1100px, etc. */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px; /* Espacio para la flecha izquierda */
+  padding-right: 20px; /* Espacio para la flecha derecha */
+  position: relative; /* Para posicionar flechas correctamente */
+}
+
+/* Estilo y posicionamiento de las flechas de navegación */
+.mySwiper .swiper-button-next,
+.mySwiper .swiper-button-prev {
+  color: #facc15; /* Amarillo de Tailwind (yellow-400), ajusta al color de tus flechas en la imagen */
+  /* Mueve las flechas un poco hacia afuera o ajústalas */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px; /* Ajusta el tamaño */
+  height: 24px; /* Ajusta el tamaño */
+  /* Puedes añadir más estilos como background, border-radius si quieres botones más elaborados */
+}
+.mySwiper .swiper-button-next::after,
+.mySwiper .swiper-button-prev::after {
+  font-size: 24px; /* Ajusta el tamaño del ícono de la flecha */
+  font-weight: bold;
+}
+
+.mySwiper .swiper-button-prev {
+  left: -5px; /* Ajusta para que no esté tan pegada al borde del slide */
+}
+.mySwiper .swiper-button-next {
+  right: -5px; /* Ajusta para que no esté tan pegada al borde del slide */
+}
+
+/* Estilo de la paginación */
+.mySwiper .swiper-pagination-bullet {
+  background-color: #facc15; /* Amarillo, ajusta al color de tus puntos */
+  opacity: 0.6;
+  width: 8px; /* Tamaño de los puntos */
+  height: 8px; /* Tamaño de los puntos */
+  margin: 0 5px !important; /* Espacio entre puntos */
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background-color: #facc15; /* Amarillo, ajusta al color de tus puntos activos */
+  /* transform: scale(1.2); Opcional: hacer el punto activo un poco más grande */
+}
+
+.mySwiper .swiper-pagination {
+  position: relative; /* O static, para que fluya después de los slides */
+  bottom: auto !important; /* Resetea la posición absoluta por defecto si es necesario */
+  margin-top: 20px; /* Espacio entre los slides y la paginación */
+}
+
+/* Para asegurar que los slides tengan la misma altura en modo 2-por-vista */
+.mySwiper .swiper-slide {
+  height: auto; /* Permite que el contenido dicte la altura */
+  display: flex; /* Para que el contenido interno pueda usar h-full */
+}
+
+.mySwiper .swiper-slide > div { /* El div de la tarjeta dentro del slide */
+  width: 100%;
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+}
+
+/* styles/globals.css */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pingLarge {
+    75%, 100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* Clase para aplicar la animación */
+.animate-ping-large {
+    animation: pingLarge 1s ease-in-out infinite;
+}
+
+/* Opcional: si quieres un efecto de "ping" más típico con un punto central */
+.ping-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem; /* Tamaño del contenedor */
+    height: 3rem; /* Tamaño del contenedor */
+}
+
+.ping-dot {
+    position: relative; /* o absolute si no hay otros hijos */
+    width: 0.75rem; /* Tamaño del punto central */
+    height: 0.75rem; /* Tamaño del punto central */
+    background-color: #03d3b0; /* Color del punto central */
+    border-radius: 50%;
+    /* z-index: 1; Si el anillo animado no es position: absolute */
+}
+
+.ping-animated-ring {
+    /* Esta es la clase que ya definimos arriba como .animate-ping-large */
+    /* Si quieres que esté detrás del punto y sea parte del contenedor: */
+    position: absolute;
+    width: 100%; /* O un tamaño inicial más pequeño que el .ping-dot */
+    height: 100%;/* O un tamaño inicial más pequeño que el .ping-dot */
+    /* background-color: skyblue; /* Ya está en .animate-ping-large */
+    /* border-radius: 50%;  /* Ya está en .animate-ping-large */
+}
+
+.mySwiper .swiper-slide > div { /* Target the inner card div */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.mySwiper .swiper-slide:hover > div {
+    transform: translateY(-5px) scale(0.95); /* Subtle lift and scale */
+    /* You could also brighten the teal outline or add a subtle shadow */
+    /* box-shadow: 0 10px 20px rgba(3, 211, 176, 0.1); */
+}
+
+/* ... any other global styles ... */
+
+@keyframes subtleGrainShift {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 2% 2%; /* Small shifts */
+  }
+  50% {
+    background-position: 0% 4%;
+  }
+  75% {
+    background-position: 4% 0%;
+  }
+}
+
+.animated-grain-texture {
+  animation: subtleGrainShift 25s infinite linear; /* Slow animation duration */
+  /*
+    Adjust background-size if your grain texture isn't perfectly tileable
+    or if you want to control the scale of the grain pattern.
+    If your image is tileable, you might not need this or can use 'auto'.
+  */
+  background-size: 200px 200px; /* Example: Adjust to your grain image */
+  will-change: background-position; /* Hint for browser optimization */
+}
+
+@keyframes grainPan {
+    0%, 100% { 
+      background-position: 0% 0% 
+    }
+    25% { 
+      background-position: 20% -10% 
+    }
+    50% { 
+      background-position: 0% 20% 
+    }
+    75% { 
+      background-position: -10% 0% 
+    }
+}
+
+.animate-grain-pan{
+  animation: grainPan 50s linear infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-shift{
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up{
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.animate-fade-in-up-delay-1{
+  animation: fadeInUp 0.6s ease-out 0.2s forwards;
+}
+
+.animate-fade-in-up-delay-2{
+  animation: fadeInUp 0.6s ease-out 0.4s forwards;
+}
+
+@keyframes fadeIn {
+  0%{
+    opacity: 0;
+  } 
+  100%{
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn{
+  animation: fadeIn 0.7s ease-out forwards;
+}
+
+@keyframes slideDownEnter {
+  0%{
+    opacity: 0.5;
+    transform: translateY(-10);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDownEnter{
+  animation: slideDownEnter 0.4s ease-in-out;
+}
+
+.nav-link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Adjust as needed */
+    left: 0;
+    width: 100%;
+    height: 2px; /* Underline thickness */
+    background-color: #03d3b0; /* Teal color */
+    transform: scaleX(0);
+    transform-origin: left; /* Or 'center' for center-out effect */
+    transition: transform 0.3s ease-out;
+}
+.nav-link-underline:hover::after {
+    transform: scaleX(1);
+}
+
+@keyframes slow-pan {
+    0% { background-position: 0% 0% }
+    100% { background-position: 100% 100% }
+}
+
+.animate-slow-pan{
+  animation: slow-pan 60s linear infinite alternate;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.4 }
+    50% { opacity: 0.8 }
+}
+
+.animate-twinkle-1{
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.animate-twinkle-2{
+  animation: twinkle 2.5s ease-in-out infinite 0.5s;
+}
+
+@keyframes expand-out {
+    0% { transform: scale(0.8) translate(-50%, -50%); opacity: 0 }
+    100% { transform: scale(1) translate(-50%, -50%); opacity: 0.1}
+}
+
+.animate-expand-out-1{
+  animation: expand-out 1s ease-out 0.2s forwards;
+}
+
+.animate-expand-out-2{
+  animation: expand-out 1s ease-out 0.4s forwards;
+}
+
+.animate-expand-out-3{
+  animation: expand-out 1s ease-out 0.6s forwards;
+}
+
+.animate-expand-out-4{
+  animation: expand-out 1s ease-out 0.8s forwards;
+}
+
+  @keyframes pop-in {
+    0% { opacity: 0; transform: scale(0.8) }
+    100%{ opacity: 1; transform: scale(1) }
+  }
+
+  @keyframes gentle-bob {
+    0%, 100% { transform: translateY(0) }
+    50% { transform: translateY(-4px) }
+  }
+
+.animate-pop-in{
+  animation: pop-in 0.5s ease-out forwards;
+}
+
+.animate-gentle-bob{
+  animation: gentle-bob 3s ease-in-out infinite;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.5s ease-out forwards;
+}
+

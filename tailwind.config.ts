@@ -99,6 +99,7 @@ module.exports = {
         },
     },
     plugins: [
+        require('@tailwindcss/typography'),
         // Añade plugins aquí si los necesitas, ej:
         // require('@tailwindcss/typography'),
         // require('@tailwindcss/forms'),
